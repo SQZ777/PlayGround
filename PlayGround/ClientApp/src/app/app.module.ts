@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -9,16 +8,9 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    BrowserModule
   ],
-  providers: [
-    { provide: 'BASE_URL', useFactory: getBaseUrl }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-export function getBaseUrl() {
-  return document.getElementsByTagName('base')[0].href;
-}
