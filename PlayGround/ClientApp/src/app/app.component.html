@@ -1,5 +1,19 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
+<div class="welcome-info">
+  <div class="info">
+    Welcome!
+  </div>
+</div>
 
+<li *ngFor="let item of messages">
+    {{item.msg}}
+</li>
 
+<div class="input-area">
+  <div class="input-info">
+      Message:
+  </div>
+  <input type="text">
 
+</div>

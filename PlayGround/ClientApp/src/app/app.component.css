@@ -1,0 +1,29 @@
+.welcome-info{
+    display: flex;
+    flex-direction: row;
+    font-size: 4em;
+    align-items: center;
+    justify-content: center;
+    
+}
+.welcome-info .info {
+    border-style: solid;
+    border-radius: .2em;
+    font-weight: bold;
+}
+
+
+.input-area{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+}
+
+.input-area input{
+    font-size: 1.3em;
+    border-radius: .2em;
+    border-style: solid;
+    border-color: gray;
+}
