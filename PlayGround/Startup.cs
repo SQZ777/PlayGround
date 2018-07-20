@@ -23,6 +23,7 @@ namespace PlayGround
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddMvc();
         }
 
@@ -33,6 +34,11 @@ namespace PlayGround
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder =>
+            builder.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            );
 
             app.Use(async (context, next) =>
             {
@@ -47,6 +53,7 @@ namespace PlayGround
                     await next();
                 }
             });
+
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
