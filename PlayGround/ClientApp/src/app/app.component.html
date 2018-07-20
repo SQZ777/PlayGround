@@ -6,20 +6,4 @@
   </div>
 </div>
 
-<div class="msg-info">
-  <div class="messages">
-    <li *ngFor="let item of messages">
-      {{item.msg}}
-    </li>
-  </div>
-</div>
-
-<div class="input-area">
-  <div class="input-info">
-    Message:
-  </div>
-  <input [(ngModel)]="inputMsg">
-  <div class="send" (click)="addMessage()">
-      send
-  </div>
-</div>
+<router-outlet></router-outlet>

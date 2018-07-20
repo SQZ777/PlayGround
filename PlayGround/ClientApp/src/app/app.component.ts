@@ -8,5 +8,4 @@ import { MESSAGES } from './mock-msg';
 export class AppComponent {
   title = 'app';
 
-
 }
