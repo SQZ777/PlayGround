@@ -1,19 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace PlayGround.Controllers
 {
+    class Message
+    {
+        public int id { get; set; }
+        public string msg { get; set; }
+    }
+
+    [Produces("application/json")]
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public JsonResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var msg = new List<Message>();
+            msg.Add(new Message() { id = 1, msg = "123" });
+            msg.Add(new Message() { id = 1, msg = "321" });
+            return Json(msg);
         }
 
         // GET api/values/5
