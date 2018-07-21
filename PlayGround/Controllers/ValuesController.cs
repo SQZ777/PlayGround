@@ -5,11 +5,6 @@ using Newtonsoft.Json;
 
 namespace PlayGround.Controllers
 {
-    class Message
-    {
-        public int id { get; set; }
-        public string msg { get; set; }
-    }
 
     [Produces("application/json")]
     [Route("api/[controller]")]
