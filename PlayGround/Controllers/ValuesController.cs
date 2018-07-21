@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using PlayGround.Models;
 
 namespace PlayGround.Controllers
 {
@@ -15,8 +16,8 @@ namespace PlayGround.Controllers
         public JsonResult Get()
         {
             var msg = new List<Message>();
-            msg.Add(new Message() { id = 1, msg = "123" });
-            msg.Add(new Message() { id = 1, msg = "321" });
+            msg.Add(new Message() { Id = 1, Msg = "123" });
+            msg.Add(new Message() { Id = 1, Msg = "321" });
             return Json(msg);
         }
 

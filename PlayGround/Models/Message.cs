@@ -1,8 +1,13 @@
-﻿namespace PlayGround.Controllers
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace PlayGround.Models
 {
-    class Message
+    public class Message
     {
-        public int id { get; set; }
-        public string msg { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+        public string Msg { get; set; }
     }
 }
+
