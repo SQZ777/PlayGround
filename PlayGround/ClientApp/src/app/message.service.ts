@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MessageService {
-  private messageUrl = 'http://localhost:1974/api/values';
+  private messageUrl = 'http://localhost:1974/api/Messages';
 
   constructor(private http: HttpClient) { }
 
