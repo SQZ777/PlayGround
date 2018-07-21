@@ -10,8 +10,8 @@
   <div class="input-info">
     Message:
   </div>
-  <input [(ngModel)]="inputMsg">
-  <div class="send" (click)="addMessage()">
+  <input #msg>
+  <div class="send" (click)="add(msg.value); msg.value='';">
       send
   </div>
 </div>

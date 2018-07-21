@@ -21,11 +21,21 @@ namespace PlayGround
         {
             
             services.AddCors();
+
+
+            services.AddCors(options=>
+            {
+                options.AddPolicy("AllCanUse",
+                    builder => builder.WithOrigins("http://localhost:4200")
+                    .AllowAnyMethod());
+            });
+
             services.AddMvc();
             services.AddDbContext<PlayGroundContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("PlayGroundContext"));
             });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,8 +49,9 @@ namespace PlayGround
             app.UseCors(builder =>
             builder.WithOrigins("http://localhost:4200")
             .AllowAnyHeader()
+            .AllowAnyMethod()
             );
-
+            
             app.Use(async (context, next) =>
             {
                 await next();

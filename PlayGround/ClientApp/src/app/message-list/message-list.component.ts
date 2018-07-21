@@ -9,7 +9,6 @@ import { MessageService } from '../message.service';
 })
 export class MessageListComponent implements OnInit {
   messages: Message[];
-
   constructor(private messageService: MessageService) { }
 
   ngOnInit() {
@@ -21,5 +20,15 @@ export class MessageListComponent implements OnInit {
     // this.http.get<Message[]>('http://localhost:1974/api/values').subscribe(messages => this.messages = messages );
     this.messageService.getMsgs()
       .subscribe(messages => this.messages = messages);
+
+  }
+
+  add(msg: string): void {
+    msg = msg.trim();
+    if (!msg) { return; }
+    this.messageService.addMsg({ msg } as Message)
+      .subscribe(message => {
+        this.messages.push(message);
+      });
   }
 }
