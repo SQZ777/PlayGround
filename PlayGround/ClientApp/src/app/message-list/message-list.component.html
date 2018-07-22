@@ -2,9 +2,7 @@
   <div class="msg-info">
     <div class="messages">
       <li *ngFor="let item of messages">
-        <div class="item-msg">
           {{item.msg}}
-        </div>
         <button (click)="delete(item)">
            Delete
         </button>
