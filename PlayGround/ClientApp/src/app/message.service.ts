@@ -27,6 +27,13 @@ export class MessageService {
       catchError(this.handleError<Message>('addMsg'))
     );
   }
+  delMsg(msg: Message): Observable<Message> {
+    const delUrl = `${this.messageUrl}/${msg.id}`;
+    return this.http.delete<Message>(delUrl, httpOptions).pipe(
+      catchError(this.handleError<Message>('delMsg'))
+    );
+  }
+
 
   /**
  * Handle Http operation that failed.

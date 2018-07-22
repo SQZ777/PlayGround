@@ -2,6 +2,9 @@
   <div class="messages">
     <li *ngFor="let item of messages">
       {{item.msg}}
+      <button (click)="delete(item)">
+         Delete
+      </button>
     </li>
   </div>
 </div>

@@ -31,4 +31,9 @@ export class MessageListComponent implements OnInit {
         this.messages.push(message);
       });
   }
+
+  delete(message: Message): void {
+    this.messages = this.messages.filter(msg => msg !== message);
+    this.messageService.delMsg(message).subscribe(X => alert(X.msg + 'delete succesfully'));
+  }
 }
