@@ -16,6 +16,5 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    alert(this.user.account);
   }
 }
