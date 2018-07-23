@@ -1,0 +1,16 @@
+<div class="content">
+  <form (ngSubmit)="onSubmit();" class="login-form" #heroForm="ngForm">
+
+    <div class="account">
+      帳號:
+      <input #account name="account" [(ngModel)]="user.account">
+    </div>
+    <div class="pwd">
+      密碼:
+      <input #pwd name="pwd" [(ngModel)]="user.password">
+    </div>
+    <button type="submit" >Submit</button>
+  </form>
+  <div class="login-form">
+  </div>
+</div>
