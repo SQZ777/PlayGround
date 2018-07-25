@@ -13,8 +13,8 @@
     height: 200px;
     align-items: center;
     justify-content: center;
+    background-color: #fff;
     border: solid;
-    border-radius: .5em;
     border-color: #306BAC;
     font-size: 1.5em;
 }
@@ -38,6 +38,12 @@
 
 .login-form button:hover{
     cursor: pointer;
-    background-color: #306BAC;
-    color: #fff;
+    background-color: whitesmoke;
+    color: #306BAC;
+}
+
+
+.login-form a{
+    font-size: .8em;
+    padding-left: .5em;
 }

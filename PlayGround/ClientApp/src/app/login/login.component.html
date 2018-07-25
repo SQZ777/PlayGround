@@ -9,6 +9,9 @@
         <div>Password:</div>
         <input #pwd name="pwd" [(ngModel)]="user.password">
       </div>
-      <button type="submit">Submit</button>
+      <div class="btn-area">
+        <button type="submit">Submit</button>
+        <a [routerLink]="[ '/signUp']">SignUp</a>
+      </div>
     </form>
 </div>
