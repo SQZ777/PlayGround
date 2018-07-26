@@ -1,38 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Message } from './message';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { User } from '../app/objects/user';
+import { Observable, of } from '../../node_modules/rxjs';
+import { catchError } from '../../node_modules/rxjs/operators';
+import { errorHandler } from '../../node_modules/@angular/platform-browser/src/browser';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
+
 @Injectable({
   providedIn: 'root'
 })
+export class LoginService {
 
-export class MessageService {
-  private messageUrl = 'http://localhost:1974/api/Messages';
+  private userUrl = '';
 
   constructor(private http: HttpClient) { }
-  getMsgs(): Observable<Message[]> {
-    return this.http.get<Message[]>(this.messageUrl).pipe(
-      catchError(this.handleError<Message[]>('getMessage'))
+
+  postUser(user: User): Observable<User> {
+    return this.http.post<User>(this.userUrl, user, httpOptions).pipe(
+      catchError(this.handleError<User>('postUser'))
     );
   }
 
-  addMsg(msg: Message): Observable<Message> {
-    return this.http.post<Message>(this.messageUrl, msg, httpOptions).pipe(
-      catchError(this.handleError<Message>('addMsg'))
-    );
-  }
-  delMsg(msg: Message): Observable<Message> {
-    const delUrl = `${this.messageUrl}/${msg.id}`;
-    return this.http.delete<Message>(delUrl, httpOptions).pipe(
-      catchError(this.handleError<Message>('delMsg'))
-    );
-  }
 
   /**
  * Handle Http operation that failed.
