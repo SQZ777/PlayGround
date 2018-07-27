@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from '../../node_modules/rxjs';
 import { catchError } from '../../node_modules/rxjs/operators';
 
@@ -20,19 +20,19 @@ export class BaseService {
     return this.http.get<any>(url).pipe(
       catchError(this.handleError<any>(errorOperation))
     );
-  };
+  }
 
-  postRequest(url: string, body: any, errorOperation: string): Observable<any>{
+  postRequest(url: string, body: any, errorOperation: string): Observable<any> {
     return this.http.post<any>(url, body, httpOptions).pipe(
       catchError(this.handleError<any>(errorOperation))
     );
-  };
-  
-  delRequest(url: string, errorOperation: string): Observable<any>{
+  }
+
+  delRequest(url: string, errorOperation: string): Observable<any> {
     return this.http.delete<any>(url, httpOptions).pipe(
       catchError(this.handleError<any>(errorOperation))
     );
-  };
+  }
 
   /**
  * Handle Http operation that failed.
