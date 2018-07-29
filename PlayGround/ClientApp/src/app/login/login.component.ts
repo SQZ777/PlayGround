@@ -20,6 +20,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.loginService.login(this.user).subscribe(() => console.log('api has hit'),
       error => alert(error),
-      () => alert(data));
+      () => this.router.navigateByUrl('messageList'));
   }
 }
