@@ -5,6 +5,7 @@ namespace PlayGround.Context
     public class PlayGroundContext : DbContext
     {
         public DbSet<Message> messages { get; set; }
+        public DbSet<User> users { get; set; }
         public PlayGroundContext(DbContextOptions<PlayGroundContext> options) :base(options) { }
     }
 }
