@@ -16,19 +16,19 @@ export class BaseService {
 
   constructor(private http: HttpClient) { }
 
-  getRequest(url: string, errorOperation: string): Observable<any> {
+  get(url: string, errorOperation: string): Observable<any> {
     return this.http.get<any>(url).pipe(
       catchError(this.handleError<any>(errorOperation))
     );
   }
 
-  postRequest(url: string, body: any, errorOperation: string): Observable<any> {
+  post(url: string, body: any, errorOperation: string): Observable<any> {
     return this.http.post<any>(url, body, httpOptions).pipe(
       catchError(this.handleError<any>(errorOperation))
     );
   }
 
-  delRequest(url: string, errorOperation: string): Observable<any> {
+  delete(url: string, errorOperation: string): Observable<any> {
     return this.http.delete<any>(url, httpOptions).pipe(
       catchError(this.handleError<any>(errorOperation))
     );

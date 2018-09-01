@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { BaseService } from "./base.service";
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +15,15 @@ export class MessageService {
 
   constructor(private http: HttpClient, private baseService: BaseService) { }
   getMsgs(): Observable<Message[]> {
-    return this.baseService.getRequest(this.messageUrl, 'getMessage')
+    return this.baseService.get(this.messageUrl, 'getMessage');
   }
 
   addMsg(msg: Message): Observable<Message> {
-    return this.baseService.postRequest(this.messageUrl, msg, 'addMessage')
+    return this.baseService.post(this.messageUrl, msg, 'addMessage');
   }
 
   delMsg(msg: Message): Observable<Message> {
     const delUrl = `${this.messageUrl}/${msg.id}`;
-    return this.baseService.delRequest(delUrl, 'deleteMessage')
+    return this.baseService.delete(delUrl, 'deleteMessage');
   }
 }

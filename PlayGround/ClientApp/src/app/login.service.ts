@@ -19,6 +19,6 @@ export class LoginService {
     private baseService: BaseService) { }
 
   login(user: User): Observable<User> {
-    return this.baseService.postRequest(this.userUrl, user, 'login');
+    return this.baseService.post(this.userUrl, user, 'login');
   }
 }
