@@ -19,11 +19,11 @@ namespace PlayGround
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddCors();
 
 
-            services.AddCors(options=>
+            services.AddCors(options =>
             {
                 options.AddPolicy("AllCanUse",
                     builder => builder.WithOrigins("http://localhost:4200")
@@ -35,7 +35,7 @@ namespace PlayGround
             {
                 options.UseSqlServer(Configuration.GetConnectionString("PlayGroundContext"));
             });
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +51,7 @@ namespace PlayGround
             .AllowAnyHeader()
             .AllowAnyMethod()
             );
-            
+
             app.Use(async (context, next) =>
             {
                 await next();

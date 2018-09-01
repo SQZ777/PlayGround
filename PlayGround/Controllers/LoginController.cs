@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PlayGround.Context;
@@ -27,32 +29,28 @@ namespace PlayGround.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.users.SingleOrDefaultAsync(m => m.Account == loginUser.Account);
-
-            if (!PasswordCorrect(user.Account, user.Password))
+            if (await IsLoginSuccess(loginUser))
             {
-                return Ok("Your Password Is Not Valid");
+                return Ok("888");
             }
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            
-
-            return Ok(user.Token);
-
+            return NotFound("帳號不存在或是密碼錯誤");
         }
 
-        private bool PasswordCorrect(string account, string password)
+        private async Task<bool> IsLoginSuccess(User user)
         {
-            var result = _context.users.FirstOrDefaultAsync(x => x.Password == password && x.Account == account);
-            if(result == null)
+            user.Password = AddSault(user.Password);
+
+            var result = await _context.Users.FirstOrDefaultAsync(x => x.Password == user.Password && x.Account == user.Account);
+            if (result == null)
             {
                 return false;
             }
             return true;
+        }
+
+        private string AddSault(string password)
+        {
+            return password;
         }
 
     }

@@ -27,7 +27,7 @@ namespace PlayGround.Controllers
         [HttpGet]
         public IEnumerable<User> Getusers()
         {
-            return _context.users;
+            return _context.Users;
         }
 
         // GET: api/Users/5
@@ -39,7 +39,7 @@ namespace PlayGround.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.users.SingleOrDefaultAsync(m => m.Id == id);
+            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
 
             if (user == null)
             {
@@ -93,7 +93,7 @@ namespace PlayGround.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.users.Add(user);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
@@ -108,13 +108,13 @@ namespace PlayGround.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _context.users.SingleOrDefaultAsync(m => m.Id == id);
+            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            _context.users.Remove(user);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
             return Ok(user);
@@ -122,7 +122,7 @@ namespace PlayGround.Controllers
 
         private bool UserExists(int id)
         {
-            return _context.users.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace PlayGround.Controllers
         [HttpGet]
         public IEnumerable<Message> Getmessages()
         {
-            return _context.messages;
+            return _context.Messages;
         }
 
         // GET: api/Messages/5
@@ -37,7 +37,7 @@ namespace PlayGround.Controllers
                 return BadRequest(ModelState);
             }
 
-            var message = await _context.messages.SingleOrDefaultAsync(m => m.Id == id);
+            var message = await _context.Messages.SingleOrDefaultAsync(m => m.Id == id);
 
             if (message == null)
             {
@@ -91,7 +91,7 @@ namespace PlayGround.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.messages.Add(message);
+            _context.Messages.Add(message);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetMessage", new { id = message.Id }, message);
@@ -106,13 +106,13 @@ namespace PlayGround.Controllers
                 return BadRequest(ModelState);
             }
 
-            var message = await _context.messages.SingleOrDefaultAsync(m => m.Id == id);
+            var message = await _context.Messages.SingleOrDefaultAsync(m => m.Id == id);
             if (message == null)
             {
                 return NotFound();
             }
 
-            _context.messages.Remove(message);
+            _context.Messages.Remove(message);
             await _context.SaveChangesAsync();
 
             return Ok(message);
@@ -120,7 +120,7 @@ namespace PlayGround.Controllers
 
         private bool MessageExists(int id)
         {
-            return _context.messages.Any(e => e.Id == id);
+            return _context.Messages.Any(e => e.Id == id);
         }
     }
 }

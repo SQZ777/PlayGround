@@ -18,8 +18,19 @@ export class LoginComponent implements OnInit {
   }
   // this.router.navigateByUrl('/messageList')
   onSubmit() {
-    this.loginService.login(this.user).subscribe(() => console.log('api has hit'),
-      error => alert(error),
-      () => this.router.navigateByUrl('messageList'));
+    console.log('test');
+    if (this.test()) {
+      this.loginService.login(this.user).subscribe(() => console.log('api has hit'),
+        error => alert(error),
+        () => this.router.navigateByUrl('messageList'));
+    }
+  }
+
+  test() {
+    if (this.user.account !== null || this.user.password !== null) {
+      alert('shoud input account');
+      return false;
+    }
+    return true;
   }
 }
