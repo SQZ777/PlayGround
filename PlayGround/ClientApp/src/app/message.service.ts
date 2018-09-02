@@ -11,7 +11,7 @@ import { BaseService } from './base.service';
 })
 
 export class MessageService {
-  private messageUrl = 'http://localhost:1974/api/Messages';
+  private messageUrl = '/api/Messages';
 
   constructor(private http: HttpClient, private baseService: BaseService) { }
   getMsgs(): Observable<Message[]> {

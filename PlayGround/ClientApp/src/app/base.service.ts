@@ -16,20 +16,21 @@ export class BaseService {
 
   constructor(private http: HttpClient) { }
 
+  private baseUrl = 'http://localhost:1974';
   get(url: string, errorOperation: string): Observable<any> {
-    return this.http.get<any>(url).pipe(
+    return this.http.get<any>(this.baseUrl + url).pipe(
       catchError(this.handleError<any>(errorOperation))
     );
   }
 
   post(url: string, body: any, errorOperation: string): Observable<any> {
-    return this.http.post<any>(url, body, httpOptions).pipe(
+    return this.http.post<any>(this.baseUrl + url, body, httpOptions).pipe(
       catchError(this.handleError<any>(errorOperation))
     );
   }
 
   delete(url: string, errorOperation: string): Observable<any> {
-    return this.http.delete<any>(url, httpOptions).pipe(
+    return this.http.delete<any>(this.baseUrl + url, httpOptions).pipe(
       catchError(this.handleError<any>(errorOperation))
     );
   }
