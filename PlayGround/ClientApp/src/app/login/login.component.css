@@ -9,8 +9,7 @@
 .login-form{
     display: flex;
     flex-direction: column;
-    width: 400px;
-    height: 200px;
+    padding: 1em;
     align-items: center;
     justify-content: center;
     background-color: #fff;
@@ -42,8 +41,12 @@
     color: #306BAC;
 }
 
-
 .login-form a{
     font-size: .8em;
     padding-left: .5em;
+}
+
+.error-message{
+    color: red;
+    font-size: .8em;
 }

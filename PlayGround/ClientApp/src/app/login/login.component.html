@@ -9,6 +9,7 @@
         <div>Password:</div>
         <input #pwd name="pwd" [(ngModel)]="user.password">
       </div>
+      <div *ngIf="error" class="error-message">帳號或密碼輸入錯誤</div>
       <div class="btn-area">
         <button type="submit">Submit</button>
         <a [routerLink]="[ '/signUp']">SignUp</a>

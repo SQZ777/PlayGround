@@ -31,9 +31,10 @@ namespace PlayGround.Controllers
 
             if (await IsLoginSuccess(loginUser))
             {
-                return Ok("888");
+                loginUser.Token = "888";
+                return Ok(loginUser);
             }
-            return NotFound("帳號不存在或是密碼錯誤");
+            return NoContent();
         }
 
         private async Task<bool> IsLoginSuccess(User user)

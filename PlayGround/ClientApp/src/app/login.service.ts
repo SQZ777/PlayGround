@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../app/objects/user';
 import { Observable, of } from '../../node_modules/rxjs';
+import { map, tap } from 'rxjs/operators';
 import { BaseService } from './base.service';
 
 const httpOptions = {
@@ -13,7 +14,7 @@ const httpOptions = {
 })
 export class LoginService {
 
-  private userUrl = '';
+  private userUrl = '/api/login';
 
   constructor(private http: HttpClient,
     private baseService: BaseService) { }
@@ -21,4 +22,5 @@ export class LoginService {
   login(user: User): Observable<User> {
     return this.baseService.post(this.userUrl, user, 'login');
   }
+
 }

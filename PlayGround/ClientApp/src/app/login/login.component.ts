@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../objects/user';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,27 +11,23 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   user = new User;
-
+  error = false;
   constructor(private loginService: LoginService,
     private router: Router) { }
 
   ngOnInit() {
   }
-  // this.router.navigateByUrl('/messageList')
   onSubmit() {
-    console.log('test');
-    if (this.test()) {
-      this.loginService.login(this.user).subscribe(() => console.log('api has hit'),
-        error => alert(error),
-        () => this.router.navigateByUrl('messageList'));
-    }
-  }
-
-  test() {
-    if (this.user.account !== null || this.user.password !== null) {
-      alert('shoud input account');
-      return false;
-    }
-    return true;
+    this.loginService.login(this.user)
+      .subscribe(
+        res => {
+          if (res) {
+            this.error = false;
+            window.localStorage['userToken'] = res.token;
+          } else {
+            this.error = true;
+          }
+        }
+      );
   }
 }
