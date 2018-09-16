@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
           if (res) {
             this.error = false;
             window.localStorage['userToken'] = res.token;
+            this.router.navigateByUrl('/messageList');
           } else {
             this.error = true;
           }

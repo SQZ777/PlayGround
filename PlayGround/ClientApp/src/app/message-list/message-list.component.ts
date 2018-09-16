@@ -22,7 +22,8 @@ export class MessageListComponent implements OnInit {
   }
 
   add(msg: string): void {
-    msg = msg.trim();
+    msg = window.localStorage['userToken'] + 'say:' +  msg.trim();
+
     if (!msg) { return; }
     this.messageService.addMsg({ msg } as Message)
       .subscribe(message => {
@@ -32,6 +33,6 @@ export class MessageListComponent implements OnInit {
 
   delete(message: Message): void {
     this.messages = this.messages.filter(msg => msg !== message);
-    this.messageService.delMsg(message).subscribe(X => alert(X.msg + 'delete succesfully'));
+    this.messageService.delMsg(message);
   }
 }
