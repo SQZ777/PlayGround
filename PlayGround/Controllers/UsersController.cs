@@ -11,57 +11,59 @@ using PlayGround.Models;
 namespace PlayGround.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Messages")]
-    public class MessagesController : Controller
+    [Route("api/Users")]
+    public class UsersController : Controller
     {
         private readonly PlayGroundContext _context;
 
-        public MessagesController(PlayGroundContext context)
+        public UsersController(PlayGroundContext context)
         {
             _context = context;
         }
 
-        // GET: api/Messages
+       
+
+        // GET: api/Users
         [HttpGet]
-        public IEnumerable<Message> Getmessages()
+        public IEnumerable<User> Getusers()
         {
-            return _context.Messages;
+            return _context.Users;
         }
 
-        // GET: api/Messages/5
+        // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMessage([FromRoute] int id)
+        public async Task<IActionResult> GetUser([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var message = await _context.Messages.SingleOrDefaultAsync(m => m.Id == id);
+            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
 
-            if (message == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(message);
+            return Ok(user);
         }
 
-        // PUT: api/Messages/5
+        // PUT: api/Users/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMessage([FromRoute] int id, [FromBody] Message message)
+        public async Task<IActionResult> PutUser([FromRoute] int id, [FromBody] User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != message.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(message).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -69,7 +71,7 @@ namespace PlayGround.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MessageExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -82,45 +84,45 @@ namespace PlayGround.Controllers
             return NoContent();
         }
 
-        // POST: api/Messages
+        // POST: api/Users
         [HttpPost]
-        public async Task<IActionResult> PostMessage([FromBody] Message message)
+        public async Task<IActionResult> PostUser([FromBody] User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Messages.Add(message);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMessage", new { id = message.Id }, message);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // DELETE: api/Messages/5
+        // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMessage([FromRoute] int id)
+        public async Task<IActionResult> DeleteUser([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var message = await _context.Messages.SingleOrDefaultAsync(m => m.Id == id);
-            if (message == null)
+            var user = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Messages.Remove(message);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
 
-            return Ok(message);
+            return Ok(user);
         }
 
-        private bool MessageExists(int id)
+        private bool UserExists(int id)
         {
-            return _context.Messages.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

@@ -1,16 +1,18 @@
 <div class="content">
-  <form (ngSubmit)="onSubmit();" class="login-form" #heroForm="ngForm">
-
-    <div class="account">
-      帳號:
-      <input #account name="account" [(ngModel)]="user.account">
-    </div>
-    <div class="pwd">
-      密碼:
-      <input #pwd name="pwd" [(ngModel)]="user.password">
-    </div>
-    <button type="submit" >Submit</button>
-  </form>
-  <div class="login-form">
-  </div>
+    <form (ngSubmit)="onSubmit();" class="login-form">
+      <div class="login-input">
+        <div>Account:</div>
+        <input #account name="account" [(ngModel)]="user.account">
+      </div>
+      
+      <div class="login-input">
+        <div>Password:</div>
+        <input #pwd name="pwd" [(ngModel)]="user.password">
+      </div>
+      <div *ngIf="error" class="error-message">帳號或密碼輸入錯誤</div>
+      <div class="btn-area">
+        <button type="submit">Submit</button>
+        <a [routerLink]="[ '/signUp']">SignUp</a>
+      </div>
+    </form>
 </div>

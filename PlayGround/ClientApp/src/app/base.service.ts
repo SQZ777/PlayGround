@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from '../../node_modules/rxjs';
 import { catchError } from '../../node_modules/rxjs/operators';
 
@@ -16,23 +16,24 @@ export class BaseService {
 
   constructor(private http: HttpClient) { }
 
-  getRequest(url: string, errorOperation: string): Observable<any> {
-    return this.http.get<any>(url).pipe(
+  private baseUrl = 'http://localhost:1974';
+  get(url: string, errorOperation: string): Observable<any> {
+    return this.http.get(this.baseUrl + url).pipe(
       catchError(this.handleError<any>(errorOperation))
     );
-  };
+  }
 
-  postRequest(url: string, body: any, errorOperation: string): Observable<any>{
-    return this.http.post<any>(url, body, httpOptions).pipe(
+  post(url: string, body: any, errorOperation: string): Observable<any> {
+    return this.http.post(this.baseUrl + url, body, httpOptions).pipe(
       catchError(this.handleError<any>(errorOperation))
     );
-  };
-  
-  delRequest(url: string, errorOperation: string): Observable<any>{
-    return this.http.delete<any>(url, httpOptions).pipe(
+  }
+
+  delete(url: string, errorOperation: string): Observable<any> {
+    return this.http.delete(this.baseUrl + url, httpOptions).pipe(
       catchError(this.handleError<any>(errorOperation))
     );
-  };
+  }
 
   /**
  * Handle Http operation that failed.

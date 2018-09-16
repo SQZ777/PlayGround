@@ -4,7 +4,8 @@ namespace PlayGround.Context
 {
     public class PlayGroundContext : DbContext
     {
-        public DbSet<Message> messages { get; set; }
-        public PlayGroundContext(DbContextOptions<PlayGroundContext> options) :base(options) { }
+        public PlayGroundContext(DbContextOptions<PlayGroundContext> options) : base(options) { }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

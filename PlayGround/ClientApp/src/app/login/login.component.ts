@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../objects/user';
-
+import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,13 +11,24 @@ import { User } from '../objects/user';
 export class LoginComponent implements OnInit {
 
   user = new User;
-
-  constructor() { }
+  error = false;
+  constructor(private loginService: LoginService,
+    private router: Router) { }
 
   ngOnInit() {
   }
-
   onSubmit() {
-    alert(this.user.account);
+    this.loginService.login(this.user)
+      .subscribe(
+        res => {
+          if (res) {
+            this.error = false;
+            window.localStorage['userToken'] = res.token;
+            this.router.navigateByUrl('/messageList');
+          } else {
+            this.error = true;
+          }
+        }
+      );
   }
 }
