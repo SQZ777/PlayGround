@@ -16,7 +16,12 @@ export class LoginComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    if (window.localStorage['userToken']) {
+      console.log(window.localStorage['userToken']);
+      this.router.navigateByUrl('/messageList');
+    }
   }
+
   onSubmit() {
     this.loginService.login(this.user)
       .subscribe(
