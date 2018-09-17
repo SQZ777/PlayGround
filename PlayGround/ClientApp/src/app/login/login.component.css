@@ -7,6 +7,10 @@
   justify-content: center;
 }
 
+.error-message{
+    color:red;
+}
+
 .login-form {
   display: flex;
   align-items: center;
